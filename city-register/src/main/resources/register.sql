@@ -41,6 +41,8 @@ create table cr_address(
 insert into cr_address(district_code, street_code, building, extension, apartment)
 values (1, 1, '10', '2', '121');
 
+insert into cr_address(district_code, street_code, building, extension, apartment)
+values (1, 1, '271', null, '4');
 
 create table cr_person(
     person_id SERIAL,
@@ -79,6 +81,7 @@ create table cr_address_person(
     person_id integer not null,
     start_date date not null,
     end_date date,
+    temporal boolean default false,
     primary key(person_address_id),
     foreign key(address_id) references cr_address(address_id) on delete restrict,
     foreign key(person_id) references cr_person(person_id) on delete restrict
@@ -88,7 +91,7 @@ insert into cr_address_person (address_id, person_id, start_date, end_date)
 values (1, 1, '2014-10-12', null);
 
 insert into cr_address_person (address_id, person_id, start_date, end_date)
-values (1, 2, '2014-10-12', null);
+values (2, 2, '2014-10-12', null);
 
 insert into cr_address_person (address_id, person_id, start_date, end_date)
 values (1, 3, '2016-02-05', null);
