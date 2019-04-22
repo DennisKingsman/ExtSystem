@@ -1,5 +1,6 @@
 package edu.studentpj.city.dao;
 
+import edu.studentpj.city.dao.PersonCheckDao;
 import edu.studentpj.city.domain.PersonRequest;
 import edu.studentpj.city.domain.PersonResponse;
 import edu.studentpj.city.exception.PersonCheckException;
@@ -26,6 +27,7 @@ public class PersonCheckDaoTest {
         request.setApartment("121");
 
         PersonCheckDao dao = new PersonCheckDao();
+        dao.setConnectionBuilder(new DirectConnectionBuilder());
         PersonResponse response = dao.checkPerson(request);
         Assert.assertTrue(response.isRegistered());
         Assert.assertFalse(response.isTemporal());
@@ -43,6 +45,7 @@ public class PersonCheckDaoTest {
         request.setApartment("4");
 
         PersonCheckDao dao = new PersonCheckDao();
+        dao.setConnectionBuilder(new DirectConnectionBuilder());
         PersonResponse response = dao.checkPerson(request);
         Assert.assertTrue(response.isRegistered());
         Assert.assertFalse(response.isTemporal());

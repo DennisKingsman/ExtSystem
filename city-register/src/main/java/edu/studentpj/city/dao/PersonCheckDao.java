@@ -21,6 +21,12 @@ public class PersonCheckDao
             "and a.street_code = ?  " +
             "and upper(a.building) = upper(?)  ";
 
+    private ConnectionBuilder connectionBuilder;
+
+    public void setConnectionBuilder(ConnectionBuilder connectionBuilder){
+        this.connectionBuilder = connectionBuilder;
+    }
+
     public PersonResponse checkPerson(PersonRequest request) throws PersonCheckException
     {
         PersonResponse response = new PersonResponse();
@@ -74,7 +80,7 @@ public class PersonCheckDao
     }
 
     private Connection getConnection() throws SQLException {
-        return DriverManager.getConnection("jdbc:postgresql://localhost/city_register", "postgres", "postgres");
+        return connectionBuilder.getConnection();
 
     }
 }

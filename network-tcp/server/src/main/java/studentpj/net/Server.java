@@ -71,11 +71,11 @@ class SimpleServer extends Thread
     private void handleRequest()
     {
         try {
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(client.getInputStream()));
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(client.getInputStream())); //string <- chars <- bytes from Internet
             BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(client.getOutputStream()));
 
             String request = bufferedReader.readLine();
-            String[] lines = request.split("\\s+");
+            String[] lines = request.split("\\s+"); // split with "    "
 
             String command = lines[0];
             String userName = lines[1];
